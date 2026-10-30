@@ -32,11 +32,13 @@ export function matchScannedCase<T extends { case_number?: string | null }>(case
 
 export interface TimerState { startedAt: number | null; accumulatedMs: number }
 
+/** A start time of 0 is a valid timestamp; only null means stopped. */
+export const timerRunning = (t: TimerState) => t.startedAt !== null && t.startedAt !== undefined;
 export const timerElapsedMs = (t: TimerState, now: number) =>
-  t.accumulatedMs + (t.startedAt ? Math.max(0, now - t.startedAt) : 0);
-export const timerStart = (t: TimerState, now: number): TimerState => (t.startedAt ? t : { ...t, startedAt: now });
+  t.accumulatedMs + (timerRunning(t) ? Math.max(0, now - (t.startedAt as number)) : 0);
+export const timerStart = (t: TimerState, now: number): TimerState => (timerRunning(t) ? t : { ...t, startedAt: now });
 export const timerPause = (t: TimerState, now: number): TimerState =>
-  t.startedAt ? { startedAt: null, accumulatedMs: timerElapsedMs(t, now) } : t;
+  timerRunning(t) ? { startedAt: null, accumulatedMs: timerElapsedMs(t, now) } : t;
 
 export function formatDuration(ms: number) {
   const s = Math.floor(ms / 1000);
