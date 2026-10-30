@@ -16,7 +16,7 @@ import { useBarcodeScanner, scanBeep } from "@/hooks/useBarcodeScanner";
 import { stageLabel } from "@/config/dentalLab";
 import { blockedReason, nextStage, HOLD_REASONS } from "@/lib/labWorkflow";
 import { benchTasks } from "@/lib/labBench";
-import { formatDuration, matchScannedCase, teethLabel, timerElapsedMs, timerPause, timerStart, type TimerState } from "@/lib/labScanner";
+import { formatDuration, matchScannedCase, teethLabel, timerElapsedMs, timerPause, timerRunning, timerStart, type TimerState } from "@/lib/labScanner";
 import { toast } from "@/hooks/use-toast";
 import { PrintTravelerButton } from "@/components/dlab/PrintTravelerButton";
 
@@ -82,7 +82,7 @@ export default function DlabBenchPage() {
     setFlash(c.id);
     setTimeout(() => setFlash(null), 2500);
     const t = timerOf(c.id);
-    if (t.startedAt) { pauseTimer(c.id); toast({ title: `${c.case_number} timer paused` }); }
+    if (timerRunning(t)) { pauseTimer(c.id); toast({ title: `${c.case_number} timer paused` }); }
     else { startTimer(c.id); toast({ title: `${c.case_number} timer started` }); }
   });
 
@@ -113,7 +113,7 @@ export default function DlabBenchPage() {
           const to = nextStage(c.status);
           const teeth: string[] = c.teeth || [];
           const t = timerOf(c.id);
-          const running = !!t.startedAt;
+          const running = timerRunning(t);
           const elapsed = timerElapsedMs(t, now);
           const logged = Number(c.labor_seconds_total || 0);
           return (

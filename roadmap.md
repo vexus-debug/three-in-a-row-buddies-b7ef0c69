@@ -48,3 +48,10 @@
 
 ## Dentist walkthrough
 - [x] Rewrite the visit walkthrough to follow the Active Visit bar flow (Consent, Chart, Plan, Rx, Notes, Finish) with click-by-click steps
+
+## Lab Phase 2: Shop floor scanning & bench
+- [x] Scanner listener with beep on bench and case board
+- [x] Bench work timers (start/pause/resume, saved on Done)
+- [x] Bench locked to the signed-in technician; supervisor picker
+- [x] Bridge abutment / pontic marking
+- [x] Fix timer bug when a start time of 0 was treated as stopped
