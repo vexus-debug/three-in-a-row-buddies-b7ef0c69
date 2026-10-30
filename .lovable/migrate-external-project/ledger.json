@@ -1,0 +1,15 @@
+{
+  "source": "github",
+  "repository": "https://github.com/vexus-debug/three-in-a-row-buddies-e96d37ee.git",
+  "capabilities": [
+    { "capability": "application code and bundled assets", "source": "GitHub repository", "outcome": "imported into project; repository metadata and environment secret files excluded", "status": "pending", "next_action": "none for requested import" },
+    { "capability": "database schema", "source": "Supabase migration files", "outcome": "migration files imported; no database changes applied", "status": "pending", "next_action": "apply or adapt schema only if requested" },
+    { "capability": "application records", "source": "Supabase", "outcome": "no record export was included", "status": "pending", "next_action": "request sanitized CSV or JSON exports if existing records should be migrated" },
+    { "capability": "authentication identities", "source": "Supabase", "outcome": "application auth code imported; no user export or account migration performed", "status": "pending", "next_action": "request identity export and migrate only if requested" },
+    { "capability": "authorization", "source": "Supabase migrations and application code", "outcome": "imported without runtime verification", "status": "pending", "next_action": "verify only if requested" },
+    { "capability": "uploaded file bytes", "source": "Supabase Storage", "outcome": "no storage export detected in the attached repository", "status": "pending", "next_action": "request storage export only if existing uploads must be migrated" },
+    { "capability": "external providers and secrets", "source": "repository environment configuration", "outcome": "integration code retained; .env excluded to protect credentials", "status": "pending", "next_action": "configure required provider credentials through secure settings if needed" },
+    { "capability": "public endpoints, callbacks, webhooks, and schedules", "source": "repository code and configuration", "outcome": "source files imported without runtime verification", "status": "pending", "next_action": "verify only if requested" },
+    { "capability": "cutover and production verification", "source": "GitHub repository", "outcome": "not performed", "status": "pending", "next_action": "not requested" }
+  ]
+}
